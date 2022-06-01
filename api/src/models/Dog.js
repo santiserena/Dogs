@@ -29,6 +29,10 @@ module.exports = (sequelize) => {
 
     lifeSpan:{
       type: DataTypes.STRING,
-    } 
+    },
+    
+    image:{
+      type: DataTypes.STRING,
+    },
   },{timestamps: false});
 };
