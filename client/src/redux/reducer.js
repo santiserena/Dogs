@@ -1,8 +1,9 @@
-import { DATA_SOURCE, GET_ALL_BREEDS } from "./actions";
+import { DATA_SOURCE, GET_ALL_BREEDS, GET_TEMPERAMENTS } from "./actions";
 
 
 const initialstate = {
 allBreeds:[],
+temperaments:[],
 filtered:[]
 }
 
@@ -14,6 +15,12 @@ export default function rootReducer(state = initialstate, action) {
         allBreeds: action.payload,
         filtered: action.payload
       }
+
+    case GET_TEMPERAMENTS:
+      return {
+        ...state,
+        temperaments: action.payload
+      }  
     
     case DATA_SOURCE:
       if (action.payload === 'traditionals'){
