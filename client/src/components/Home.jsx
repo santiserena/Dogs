@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { /* dataSource, */ getAllBreeds, getTemperaments } from "../redux/actions";
-import ShowCards from "./ShowCards";
-
+import ShowsCardsAndPagination from "./ShowsCardsAndPagination";
 
 
 export default function Home (){
-
-    
 
     const dispatch = useDispatch();
     const temp = useSelector ( state => state.temperaments);
@@ -23,9 +20,6 @@ export default function Home (){
     },[dispatch]) 
     
     
-    
-    
-    let flag = 0
     function filterOnChange (e){
 
       let filtered = allBreeds;
@@ -42,11 +36,9 @@ export default function Home (){
       if(source === 'users') filtered = filtered?.filter ( elem => typeof elem.id === 'string')
       if(source === 'traditionals') filtered = filtered?.filter ( e => typeof e.id === 'number')
       if(byName) filtered = filtered?.filter ( elem =>  elem.name.toLowerCase().includes (byName.toLowerCase()))
-      
   
-      if (filtered.length === 0) return flag=1
+      
       setfiltered(filtered)
-
     }
 
     
@@ -102,31 +94,8 @@ export default function Home (){
         </div>
 
 
-
-       {/*  {filteredState.length === 0? allBreeds.map((e) => (
-          <Card
-            key={e.id}
-            id={e.id}
-            name={e.name}
-            height={e.height}
-            weight={e.weight}
-            image={e.image}
-            temperament={e.temperament}
-          />
-        )): filteredState.map((e) => (
-          <Card
-            key={e.id}
-            id={e.id}
-            name={e.name}
-            height={e.height}
-            weight={e.weight}
-            image={e.image}
-            temperament={e.temperament}
-          />
-        ))} */}
-      {flag ? <h1>no hay perros</h1> : null}
-
-      <ShowCards info = {allBreeds}/>  
+      {/* recibe array VV */} 
+      <ShowsCardsAndPagination info = {allBreeds}/>  
 
       </div>
     );

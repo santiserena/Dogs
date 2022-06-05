@@ -66,7 +66,7 @@ export default function Create(){
         setMyState((prevState) => ({...prevState, error: validateErrors}))
     }
     
-    const handleSubmit= () => {
+    const handleSubmit= (event) => {
         
         let toSend ={
             name: myState.name,
@@ -78,11 +78,16 @@ export default function Create(){
         if (myState.image) toSend.image = myState.image;
         
         
-        axios.post('https:sample-endpoint.com/user', toSend)
-        .then( () => (response) => console.log(response))
-        .catch ( error => console.log(error))
+        axios.post('http://localhost:3001/dog', toSend)
+        .then( response => alert('Breed added successfully!') )
+        .catch ( error => {
+            console.log('Error--->',error)
+            alert ('Load Failed')
+        })
 
+        event.preventDefault();
        // alert('Breed added', myState)
+       console.log('llegueeeeeeeee');
     }
     
     return (
