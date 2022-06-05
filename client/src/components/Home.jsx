@@ -1,64 +1,92 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { /* dataSource, */ getAllBreeds, getTemperaments } from "../redux/actions";
-import Card from "./Card";
+import ShowCards from "./ShowCards";
 
 
 
 export default function Home (){
 
+    
+
     const dispatch = useDispatch();
     const temp = useSelector ( state => state.temperaments);
     const allBreeds = useSelector (state => state.allBreeds);
-    const [filtered, setfiltered] = useState(allBreeds)   
-  
-
+    const [filteredState, setfiltered] = useState([])  
+    const [myTemperaments, setMyTemperaments] = useState ([]) // cargar los temperamentos
+    
+    
     useEffect(() => {
-        dispatch(getAllBreeds())
-        dispatch(getTemperaments())
+      dispatch(getAllBreeds())
+      dispatch(getTemperaments())
+      
     },[dispatch]) 
-
-
-
+    
+    
+    
+    
+    let flag = 0
     function filterOnChange (e){
+
       let filtered = allBreeds;
 
-      if(e.target.value === 'users') filtered = filtered?.filter ( e => typeof e.id === 'string')
-      if(e.target.value === 'traditionals') filtered = filtered?.filter ( e => typeof e.id === 'number')
-
-      //if(e.target.value === 'alphabetical') filtered = filtered?.sort( e => e.name)
-
-        //van todos los filtros
+      let source = document.getElementById('source').value;
+      let byName = document.getElementById('byName').value;
+      let temp = document.getElementById('temp').value;
+      
+      
+      
+      setMyTemperaments ([...myTemperaments, temp])
+        
+      
+      if(source === 'users') filtered = filtered?.filter ( elem => typeof elem.id === 'string')
+      if(source === 'traditionals') filtered = filtered?.filter ( e => typeof e.id === 'number')
+      if(byName) filtered = filtered?.filter ( elem =>  elem.name.toLowerCase().includes (byName.toLowerCase()))
+      
+  
+      if (filtered.length === 0) return flag=1
       setfiltered(filtered)
+
     }
 
+    
+    /*   if (order === "alphabetical") filtered = filtered.sort(function (a, b) {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+          return 0;
+        }); */
 
-    /* function filterOnChange (e){
-      //e.target.value
-      dispatch (dataSource(e.target.value));
-    }
-       */
+    /*   if (order === "weight") { 
+        filtered.forEach( elem => elem.weight.length===2 ? elem.weight = (elem.weight[0] + elem.weight[1])/2 : elem.weight = elem.weight[0] ) 
+        
+        filtered = filtered.sort(function (a, b) {
+        if (a.weight > b.weight) return 1;
+        if (a.weight < b.weight) return -1;
+        return 0;
+      }); 
+    } */
+
       
 
     return (
       <div>
         <div>
           <h3>Search breeds by name:</h3>
-          <input onChange={filterOnChange}/>
+          <input name='byName' id="byName" onChange={filterOnChange}/>
         </div>
 
         <div>
           <h3>Filter breeds by:</h3>
           <label>temperaments</label>
           
-          <select>
-            {temp.map ( e => <option key = {e.id}>{e.name}</option> )} 
+          <select id= 'temp' onChange = {filterOnChange}>
+            {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
           </select>
 
           <br />
 
           <label>file source </label>
-          <select onChange={filterOnChange}>
+          <select id='source' onChange={filterOnChange}>
             <option value="all the breeds">All</option>
             <option value="traditionals">Traditionals</option>
             <option value="users">Created by users</option>
@@ -67,14 +95,15 @@ export default function Home (){
 
         <div>
           <h3>Sort by:</h3>
-          <select onChange={filterOnChange}>
-            <option value="alphabetical">alphabetical order</option>
+          <select id = 'order' onChange={filterOnChange}>
             <option value="weight">weight</option>
+            <option value="alphabetical">alphabetical order</option>
           </select>
         </div>
 
-        {/* {allBreeds.map((e) => ( */}
-        {filtered.map((e) => (
+
+
+       {/*  {filteredState.length === 0? allBreeds.map((e) => (
           <Card
             key={e.id}
             id={e.id}
@@ -84,7 +113,21 @@ export default function Home (){
             image={e.image}
             temperament={e.temperament}
           />
-        ))}
+        )): filteredState.map((e) => (
+          <Card
+            key={e.id}
+            id={e.id}
+            name={e.name}
+            height={e.height}
+            weight={e.weight}
+            image={e.image}
+            temperament={e.temperament}
+          />
+        ))} */}
+      {flag ? <h1>no hay perros</h1> : null}
+
+      <ShowCards info = {allBreeds}/>  
+
       </div>
     );
 
