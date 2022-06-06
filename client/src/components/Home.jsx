@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { /* dataSource, */ getAllBreeds, getTemperaments } from "../redux/actions";
+import { doFilters, getAllBreeds, getTemperaments } from "../redux/actions";
 import ShowsCardsAndPagination from "./ShowsCardsAndPagination";
 
 
@@ -8,57 +8,30 @@ export default function Home (){
 
     const dispatch = useDispatch();
     const temp = useSelector ( state => state.temperaments);
-    const allBreeds = useSelector (state => state.allBreeds);
-    const [filteredState, setfiltered] = useState([])  
-    const [myTemperaments, setMyTemperaments] = useState ([]) // cargar los temperamentos
-    
+    const allBreedsFiltered = useSelector (state => state.filtered);
+   
     
     useEffect(() => {
       dispatch(getAllBreeds())
       dispatch(getTemperaments())
-      
     },[dispatch]) 
     
     
     function filterOnChange (e){
 
-      let filtered = allBreeds;
+      let sending ={
+        sltName:document.getElementById('byName').value,
+        sltSource:document.getElementById('source').value,
+        sltAlpWeight:document.getElementById('alpWeight').value,
+        sltAscDes:document.getElementById('ascDes').value
+      }
 
-      let source = document.getElementById('source').value;
-      let byName = document.getElementById('byName').value;
-      let temp = document.getElementById('temp').value;
-      
-      
-      
-      setMyTemperaments ([...myTemperaments, temp])
-        
-      
-      if(source === 'users') filtered = filtered?.filter ( elem => typeof elem.id === 'string')
-      if(source === 'traditionals') filtered = filtered?.filter ( e => typeof e.id === 'number')
-      if(byName) filtered = filtered?.filter ( elem =>  elem.name.toLowerCase().includes (byName.toLowerCase()))
-  
-      
-      setfiltered(filtered)
+      if (e.target.id === 'temp'){
+        dispatch (doFilters({...sending, sltTemp: e.target.value}))
+      }
+
+      else dispatch (doFilters(sending));
     }
-
-    
-    /*   if (order === "alphabetical") filtered = filtered.sort(function (a, b) {
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-          return 0;
-        }); */
-
-    /*   if (order === "weight") { 
-        filtered.forEach( elem => elem.weight.length===2 ? elem.weight = (elem.weight[0] + elem.weight[1])/2 : elem.weight = elem.weight[0] ) 
-        
-        filtered = filtered.sort(function (a, b) {
-        if (a.weight > b.weight) return 1;
-        if (a.weight < b.weight) return -1;
-        return 0;
-      }); 
-    } */
-
-      
 
     return (
       <div>
@@ -87,17 +60,22 @@ export default function Home (){
 
         <div>
           <h3>Sort by:</h3>
-          <select id = 'order' onChange={filterOnChange}>
-            <option value="weight">weight</option>
+          <select id = 'alpWeight' onChange={filterOnChange}>
             <option value="alphabetical">alphabetical order</option>
+            <option value="weight">weight</option>
+          </select>
+
+      <br/>      
+          <select id = 'ascDes' onChange={filterOnChange}>
+            <option value="Ascending">ascending order</option>
+            <option value="Descending">descending order</option>
           </select>
         </div>
 
 
       {/* recibe array VV */} 
-      <ShowsCardsAndPagination info = {allBreeds}/>  
+      <ShowsCardsAndPagination info = {allBreedsFiltered}/>  
 
       </div>
     );
-
 }

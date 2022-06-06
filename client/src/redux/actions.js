@@ -1,7 +1,8 @@
 import axios from 'axios';
 export const GET_ALL_BREEDS = 'GET_ALL_BREEDS';
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS';
-export const DATA_SOURCE = 'DATA_SOURCE';
+export const DO_FILTERS = 'DO_FILTERS';
+//export const DATA_SOURCE = 'DATA_SOURCE';
 
 
 export const getAllBreeds = () => (dispatch) => {
@@ -26,12 +27,19 @@ export const getTemperaments = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const dataSource = (source) => {
+export const doFilters = (indications) => {
+  return {
+    type: DO_FILTERS,
+    payload: indications
+  }
+}  
+
+/* export const dataSource = (source) => {
   return {
     type: DATA_SOURCE,
     payload: source
   }
-}
+} */
 
 
 
