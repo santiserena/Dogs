@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { doFilters, getAllBreeds, getTemperaments } from "../redux/actions";
+import { doFilters, getAllBreeds, getTemperaments, removeTemperament } from "../redux/actions";
 import ShowsCardsAndPagination from "./ShowsCardsAndPagination";
 
 
@@ -27,11 +27,19 @@ export default function Home (){
         sltAscDes:document.getElementById('ascDes').value
       }
 
-      if (e.target.id === 'temp'){
+     
+
+      if (e.target.id === 'temp' && !temperamentsSelected.includes(e.target.value)){
         dispatch (doFilters({...sending, sltTemp: e.target.value}))
       }
 
       else dispatch (doFilters(sending));
+    }
+
+    function removeTemp (e){
+      e.preventDefault();
+      dispatch (removeTemperament(e.target.value))
+      filterOnChange(e)
     }
 
     return (
@@ -48,7 +56,8 @@ export default function Home (){
           <select id= 'temp' onChange = {filterOnChange}>
             {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
           </select>
-          {temperamentsSelected?.length && <label> Selected: {temperamentsSelected.join(', ')}</label>}
+          {temperamentsSelected?.length && 
+              <label> Click to remove: {temperamentsSelected.map( e => <button key={e} value = {e} onClick={removeTemp}>{e}</button>)}</label>}
 
           <br />
 

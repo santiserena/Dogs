@@ -1,4 +1,4 @@
-import { /* DATA_SOURCE, */ DO_FILTERS, GET_ALL_BREEDS, GET_TEMPERAMENTS } from "./actions";
+import { DO_FILTERS, GET_ALL_BREEDS, GET_TEMPERAMENTS, REMOVE_TEMPERAMENT } from "./actions";
 
 
 const initialstate = {
@@ -33,7 +33,6 @@ export default function rootReducer(state = initialstate, action) {
       // temperament filter
 
       let array=state.allBreeds
-      console.log('inicial' , action.payload);
 
       if (action.payload.sltTemp){
         array = array.filter ( e => e.temperament?.includes(action.payload.sltTemp))
@@ -67,10 +66,10 @@ export default function rootReducer(state = initialstate, action) {
         for (let i = 0; i < array.length; i++) {
           var aux = array[i];
           for (let j = 0; j < i; j++) {
-            if(aux.weight[1]  <  array[j].weight[1]){
+            if (aux.weight[1] < array[j].weight[1]) {
               aux = array[j];
-              array [j] = array[i]
-              array [i] = aux;
+              array[j] = array[i];
+              array[i] = aux;
             }
           }
         }
@@ -91,6 +90,13 @@ export default function rootReducer(state = initialstate, action) {
         temperamentsSelected:action.payload.hasOwnProperty('sltTemp') ? [...state.temperamentsSelected, action.payload.sltTemp]: state.temperamentsSelected,
         filtered: array,
       }
+
+    case REMOVE_TEMPERAMENT:
+      
+      return {
+        ...state,
+        temperamentsSelected: state.temperamentsSelected.filter ( e => e !== action.payload)
+      }  
       
     default:
       return state;
