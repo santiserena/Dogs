@@ -34,13 +34,6 @@ export const doFilters = (indications) => {
   }
 }  
 
-/* export const dataSource = (source) => {
-  return {
-    type: DATA_SOURCE,
-    payload: source
-  }
-} */
-
 
 
 

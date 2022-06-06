@@ -33,9 +33,10 @@ export default function rootReducer(state = initialstate, action) {
       // temperament filter
 
       let array=state.allBreeds
+      console.log('inicial' , action.payload);
 
       if (action.payload.sltTemp){
-        array = state.allBreeds?.filter ( e => e.temperament?.includes(action.payload.sltTemp))
+        array = array.filter ( e => e.temperament?.includes(action.payload.sltTemp))
       }
       
       if (state.temperamentsSelected.length){  //if there's something in temperamentsSelected, do filter
@@ -45,33 +46,44 @@ export default function rootReducer(state = initialstate, action) {
       }
       
       //name filter
-
+      
       if (action.payload.sltName) array = array?.filter( e => e.name.toLowerCase().includes(action.payload.sltName.toLowerCase()))
-
+      
       //source filter
-
+      
       if(action.payload.sltSource === "users") {
         array = array.filter ( e => typeof e.id !== 'number')
       }
       if(action.payload.sltSource === "traditionals") {
         array = array.filter ( e => typeof e.id === 'number')
       }
-
+      
       //default alphabetical or weight order
 
       if(action.payload.sltAlpWeight === "weight"){
-        array = array.sort(function (a, b) {
-          if (a.weight[0] > b.weight[0]) return 1;
-          if (a.weight[0] < b.weight[0]) return -1;
-          return 0;
-        });
+        
+        array = array.filter ( e => e.weight[0] && e.weight[1])
+
+        for (let i = 0; i < array.length; i++) {
+          var aux = array[i];
+          for (let j = 0; j < i; j++) {
+            if(aux.weight[1]  <  array[j].weight[1]){
+              aux = array[j];
+              array [j] = array[i]
+              array [i] = aux;
+            }
+          }
+        }
       }
 
       //ascending or descending order
 
       if(action.payload.sltAscDes === "Descending"){
-        console.log('descendiente');
-        array=array.reverse();
+          let aux = []   //couldnt use reverse()
+          for (let i = 0; i < array.length; i++) {
+            aux.unshift(array[i]) 
+          }
+          array=aux
       } 
       
       return {
