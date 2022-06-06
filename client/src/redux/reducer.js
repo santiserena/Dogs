@@ -14,7 +14,11 @@ export default function rootReducer(state = initialstate, action) {
     case GET_ALL_BREEDS:
       return {
         ...state,
-        allBreeds: action.payload,
+        allBreeds: action.payload.sort(function (a, b) {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+            if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+            return 0;
+        }),
         filtered: action.payload
       }
 
@@ -27,6 +31,7 @@ export default function rootReducer(state = initialstate, action) {
     case DO_FILTERS:
 
       // temperament filter
+
       let array=state.allBreeds
 
       if (action.payload.sltTemp){
@@ -52,36 +57,29 @@ export default function rootReducer(state = initialstate, action) {
         array = array.filter ( e => typeof e.id === 'number')
       }
 
-      
+      //default alphabetical or weight order
+
+      if(action.payload.sltAlpWeight === "weight"){
+        array = array.sort(function (a, b) {
+          if (a.weight[0] > b.weight[0]) return 1;
+          if (a.weight[0] < b.weight[0]) return -1;
+          return 0;
+        });
+      }
+
+      //ascending or descending order
+
+      if(action.payload.sltAscDes === "Descending"){
+        console.log('descendiente');
+        array=array.reverse();
+      } 
       
       return {
         ...state,
         temperamentsSelected:action.payload.hasOwnProperty('sltTemp') ? [...state.temperamentsSelected, action.payload.sltTemp]: state.temperamentsSelected,
         filtered: array,
-         
       }
       
-      
-      /*  case DATA_SOURCE:
-      if (action.payload === 'traditionals'){
-        let source = state.allBreeds.filter ( e => typeof (e.id) === 'number')
-        return {
-          ...state,
-          filtered: source  
-        }
-      }
-      if (action.payload === 'users'){
-        let source = state.allBreeds.filter ( e => typeof (e.id) === 'string')
-        return {
-          ...state,
-          filtered: source  
-        }
-      }
-      return {
-        ...state,
-        filtered: state.allBreeds
-      };  */
-
     default:
       return state;
   }

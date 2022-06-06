@@ -9,6 +9,7 @@ export default function Home (){
     const dispatch = useDispatch();
     const temp = useSelector ( state => state.temperaments);
     const allBreedsFiltered = useSelector (state => state.filtered);
+    const temperamentsSelected = useSelector (state => state.temperamentsSelected);
    
     
     useEffect(() => {
@@ -47,6 +48,7 @@ export default function Home (){
           <select id= 'temp' onChange = {filterOnChange}>
             {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
           </select>
+          {temperamentsSelected?.length && <label> Selected: {temperamentsSelected.join(', ')}</label>}
 
           <br />
 
