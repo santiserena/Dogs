@@ -1,11 +1,19 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+import picture from "../images/StartImage.png";
+import st from './Start.module.css'
 
 export default function Start (){
     return(
-        <div>
-            <h1>start con imagen</h1>
-            <Link to='/home'><button>Lets get started</button> </Link>
+        <div  className={st.all}>
+            <div>
+                <img src={picture} alt="Not found" className={st.s} />
+            </div>
+
+            <div className={st.bu}>
+                <Link to='/home' className={st.s}><button>Lets get started</button> </Link>
+            </div>
+
         </div>
     )
 }

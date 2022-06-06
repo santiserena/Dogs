@@ -1,0 +1,24 @@
+.c {  /* toda la card */
+    border: 1px solid black;
+    border-radius: 3%;
+    background-color: #A97251;
+    width: 310px; 
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+    
+}
+
+.im {
+    width: 200px;
+    height: 140px;
+    border-radius: 4%;
+}
+
+.inf{
+   width: 300px;
+}
+

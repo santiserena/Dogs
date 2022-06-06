@@ -5,8 +5,6 @@ import { getTemperaments } from "../redux/actions";
 import axios from "axios";
 
 
-//PASAR A INGLESSSSSSSSSSSSSSSSSS
-
 export default function Create(){
 
     const dispatch = useDispatch();
@@ -46,23 +44,22 @@ export default function Create(){
             lifeSpan:''
         }
         
-        if(!myState.name)  validateErrors.name = 'campo obligatotio'
-        if(myState.name && myState.name?.match("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")==null) validateErrors.name ="solo letras";
+        if(!myState.name)  validateErrors.name = 'Required fields'
+        if(myState.name && myState.name?.match("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")==null) validateErrors.name ="Only not numeric characters";
         
-        if(!(myState.maxWeight && myState.minWeight))  validateErrors.weight = 'peso obligatorio';
-        if(myState.maxWeight && myState.maxWeight?.match("^[0-9]+$")==null) validateErrors.weight = 'ponga solo numeros';
-        if(myState.minWeight && myState.minWeight?.match("^[0-9]+$")==null) validateErrors.weight = 'ponga solo numeros';
+        if(!(myState.maxWeight && myState.minWeight))  validateErrors.weight = 'Required fields';
+        if(myState.maxWeight && myState.maxWeight?.match("^[0-9]+$")==null) validateErrors.weight = 'Only numbers are allowed';
+        if(myState.minWeight && myState.minWeight?.match("^[0-9]+$")==null) validateErrors.weight = 'Only numbers are allowed';
         
-        if(!(myState.maxHeight && myState.minHeight))  validateErrors.height = 'altura obligatoria';
-        if(myState.maxHeight && myState.maxHeight?.match("^[0-9]+$")==null) validateErrors.height = 'ponga solo numeros';
-        if(myState.minHeight && myState.minHeight?.match("^[0-9]+$")==null) validateErrors.height = 'ponga solo numeros';
+        if(!(myState.maxHeight && myState.minHeight))  validateErrors.height = 'Required fields';
+        if(myState.maxHeight && myState.maxHeight?.match("^[0-9]+$")==null) validateErrors.height = 'Only numbers are allowed';
+        if(myState.minHeight && myState.minHeight?.match("^[0-9]+$")==null) validateErrors.height = 'Only numbers are allowed';
         
-        if(myState.lifeSpan && myState.lifeSpan?.match("^[0-9]+$")==null) validateErrors.lifeSpan ="solo numeros para la expectativa";
+        if(myState.lifeSpan && myState.lifeSpan?.match("^[0-9]+$")==null) validateErrors.lifeSpan ="Only numbers are allowed";
         
-        if(myState.image && !/^(ftp|http|https):\/\/[^ "]+$/.test(myState.image)) validateErrors.image ='url invalida';
+        if(myState.image && !/^(ftp|http|https):\/\/[^ "]+$/.test(myState.image)) validateErrors.image ='Invalid url';
         
-        
-        
+
         setMyState((prevState) => ({...prevState, error: validateErrors}))
     }
     
@@ -76,6 +73,8 @@ export default function Create(){
         if (myState.t.length) toSend.temperaments = myState.t;
         if (myState.lifeSpan) toSend.lifeSpan = `${myState.lifeSpan}`;
         if (myState.image) toSend.image = myState.image;
+
+        console.log(toSend);
         
         
         axios.post('http://localhost:3001/dog', toSend)
@@ -86,38 +85,40 @@ export default function Create(){
         })
 
         event.preventDefault();
-       // alert('Breed added', myState)
-       console.log('llegueeeeeeeee');
     }
     
     return (
         <form onSubmit={handleSubmit}>
               
             <Link to = '/home'><button>Go back home</button></Link>
-            <p>Enter breed name</p>
+            <h3>Enter breed name</h3>
             <input name='name' onChange={handleOnChange}/>
-            <label>{myState.error.name}</label>
+            <p>{myState.error.name}</p>
 
-            <p>Maximum and minimum height</p>
+            <h3>Maximum and minimum height</h3>
             <input name='maxHeight' onChange={handleOnChange}/>
     <br/>   <input name='minHeight' onChange={handleOnChange}/>
-            <label>{myState.error.height}</label>
+            <label>Inches</label>
+            <p>{myState.error.height}</p>
+            
 
-            <p>Maximum and minimum weight</p>
+            <h3>Maximum and minimum weight</h3>
             <input name='maxWeight' onChange={handleOnChange}/>
     <br/>   <input name='minWeight' onChange={handleOnChange}/>
-            <label>{myState.error.weight}</label>
+            <label>Pounds</label>
+            <p>{myState.error.weight}</p>
 
-            <p>Average life expectancy</p>
+            <h3>Average life expectancy</h3>
             <input name='lifeSpan' onChange={handleOnChange}/>
-            <label>{myState.error.lifeSpan}</label>
+            <label>Years</label>
+            <p>{myState.error.lifeSpan}</p>
 
-            <p>Url with the image of the breed</p>
+            <h3>Url with the image of the breed</h3>
             <input name='image' onChange={handleOnChange}/>
-            <label>{myState.error.image}</label>
+            <p>{myState.error.image}</p>
 
 
-    <br/>   <p>Select one or more temperaments</p> 
+    <br/>   <h3>Select one or more temperaments</h3> 
             <select name='temperaments' onChange={handleOnChange}>
                 {temp.map ( e => <option key = {e.id}>{e.name}</option> )}    
             </select>

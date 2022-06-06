@@ -16,7 +16,7 @@ async function getAllBreeds (){
     let breedsDb = await Dog.findAll({
         include: Temper
     });
-
+    
     breedsApi = breedsApi.map ( e => {
         return {
             id:e.id,
@@ -28,8 +28,10 @@ async function getAllBreeds (){
             temperament:e.temperament? e.temperament.split(', ') : null
         }
     })
-
+    
     breedsDb = breedsDb.map ( e => {
+        
+        
         return {
             id:e.id,
             name:e.name,
@@ -37,6 +39,7 @@ async function getAllBreeds (){
             weight: e.weight.split('-').map(e=>parseInt(e)),
             lifeSpan: e.lifeSpan? e.lifeSpan.split('-').map( e => parseInt(e)) : null,
             image: e.image? e.image : null,
+            temperament: e.tempers?.length ? e.tempers?.map( e => e.name) : null //e.dataValues
         }
     })
 
@@ -76,9 +79,9 @@ router.get('/dogs', async (req, res, next) => {
         if(!req.query.name) res.send(breedTotal);
         else {const filt = breedTotal.filter( e => e.name.toLowerCase().includes(req.query.name.toLowerCase())) 
         
+            console.log('acaaaaaaaaaaaaaa',filt);
         filt.length? res.send(filt) : res.send ('Breed not found')
         }
-
     } catch (error) {
         next (error);
     }
@@ -90,7 +93,7 @@ router.get('/dogs/:id', async (req, res, next) => {
     const id = req.params.id
     try {
         if (id){ 
-            const data = await getAllBreeds()    // tb puedo usar la url!!!!!!!!!!!!!!!
+            const data = await getAllBreeds()    
             const oneBreed = data.find ( e => e.id.toString() === id);
             oneBreed? res.send (oneBreed) : res.send ('Id not found')
         }
@@ -116,9 +119,9 @@ router.post ('/dog', async (req, res, next) => {
         let { name, height, weight, lifeSpan, temperaments, image } = req.body
 
         let existingName = await getAllBreeds();
-            
+        
         if(!existingName.find( e => e.name === name)){
-
+            
             const dogCreate = await Dog.create({
                 name,
                 height,
@@ -129,12 +132,11 @@ router.post ('/dog', async (req, res, next) => {
             
             if(temperaments){
                 for (let e of temperaments) {
-                    
                     let foundElement = await Temper.findOne({
                         where:{name: e}
                     });
                     
-                    dogCreate.addTemper (foundElement.id)
+                   await dogCreate.addTemper (foundElement.id)
                 }
                 
                 res.send ('Breed added'); 

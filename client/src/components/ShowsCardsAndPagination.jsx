@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Card from "./Card";
+import st from './ShowsCardsAndPagination.module.css'
 
 export default function ShowsCardsAndPagination (props) {
 
@@ -17,11 +18,15 @@ export default function ShowsCardsAndPagination (props) {
 
     return (
         <div>
-            {arraypages?.map( (e, index)  => <button key={index} onClick={(event)=> show(index) }>{index}</button>)}
+            <div>
+                {arraypages?.map( (e, index)  => <button key={index} onClick={(event)=> show(index) }>{index}</button>)}
+            </div>
 
-            { !selectedPage.length ? 
+            <div className={st.ca}>
+                { !selectedPage.length ? 
                 props.info.slice(0,8).map ( e => <Card key={e.id} data={e}/>) 
                 : selectedPage?.map((e) => <Card key={e.id} data={e}/>)}
+            </div>
         </div>
           )
 }

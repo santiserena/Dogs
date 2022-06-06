@@ -1,0 +1,4 @@
+.all {
+  position: absolute; /* superpone elementos seleccionados */
+  border: 5px black solid
+};
