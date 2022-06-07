@@ -1,0 +1,13 @@
+.t{
+    width: 100vw; /* vw <-- viewport widht, it is written in percentages*/
+  height: 100vh; /* vh */
+  background-image: url('../images/collage.png');
+  background-repeat: no-repeat;
+  background-size: cover; /* stretch the image to the size of the div */
+}
+
+.i{
+    border: 3px solid;
+    display: flex;
+    
+}

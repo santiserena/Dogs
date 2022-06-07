@@ -46,7 +46,7 @@ export default function rootReducer(state = initialstate, action) {
       
       //name filter
       
-      if (action.payload.sltName) array = array?.filter( e => e.name.toLowerCase().includes(action.payload.sltName.toLowerCase()))
+      array = array?.filter( e => e.name.toLowerCase().includes(action.payload.sltName.toLowerCase()))
       
       //source filter
       

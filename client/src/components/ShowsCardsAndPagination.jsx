@@ -17,12 +17,12 @@ export default function ShowsCardsAndPagination (props) {
     }
 
     return (
-        <div>
-            <div>
+        <div className={st.t}>
+            <div className={st.uno}>
                 {arraypages?.map( (e, index)  => <button key={index} onClick={(event)=> show(index) }>{index}</button>)}
             </div>
 
-            <div className={st.ca}>
+            <div className={st.dos}>
                 { !selectedPage.length ? 
                 props.info.slice(0,8).map ( e => <Card key={e.id} data={e}/>) 
                 : selectedPage?.map((e) => <Card key={e.id} data={e}/>)}

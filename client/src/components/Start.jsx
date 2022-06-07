@@ -4,17 +4,13 @@ import st from './Start.module.css'
 
 export default function Start (){
     return(
-        <div  className={st.im}>
 
-
-            <div className={st.bu}>
-               {/*  <h1>esta es mi pag de perros</h1> */}
+        <div className={st.t}>
+            <div>
+                <Link to='/home'>{<button className={st.bu}>Lets get started</button>}</Link>
+            </div>        
                 
-                <Link to='/home' className={st.s}><button className={st.b}>Lets get started</button> </Link>
-
-            </div>
-        
-        </div>
+        </div>    
     )
 }
 

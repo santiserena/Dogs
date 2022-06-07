@@ -1,7 +1,7 @@
 .c {  /* toda la card */
-    border: 1px solid black;
+    border: 2.8px solid #203435;
     border-radius: 3%;
-    background-color: #A97251;
+    background-color: #385a5c;
     width: 310px; 
     height: 370px;
     display: flex;
@@ -15,6 +15,7 @@
 .im {
     width: 200px;
     height: 140px;
+    border: 1px solid #203435;
     border-radius: 4%;
 }
 

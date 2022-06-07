@@ -1,30 +1,22 @@
-html, html body {
-  height: 100%;
-}
-.im {
-  height: 100%;
-  width: 100%;
-  background-image: url('../images/StartImage.png');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 
-  
+.t {
+  width: 100vw; /* vw <-- viewport widht, it is written in percentages*/
+  height: 100vh; /* vh */
+  background-image: url('../images/collage.png');
+  background-repeat: no-repeat;
+  background-size: cover; /* stretch the image to the size of the div */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bu {
-  width: 100%;
-  height: 53rem;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 300px;
+  height: 140px;
+  background-color: #E19619;
+  border: solid #456b1d 12px;
+  border-radius: 20px;
+  font-size: 40px;
+  color: #174244;
 }
 
-.b{
-  border-radius: 20%;
-  height: 115px;
-  width: 125px;
-  background-color: #A97251;
-  font-size: 22px;
-}

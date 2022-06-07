@@ -1,8 +1,13 @@
-.ca{
-    
+.dos{
     height: 790px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center
+    
 }
+
+
+
+   
+

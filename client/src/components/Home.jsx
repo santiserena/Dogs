@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { doFilters, getAllBreeds, getTemperaments, removeTemperament } from "../redux/actions";
 import ShowsCardsAndPagination from "./ShowsCardsAndPagination";
+import st from './Home.module.css';
 
 
 export default function Home (){
@@ -44,48 +45,54 @@ export default function Home (){
 
     return (
       <div>
-        <div>
-          <h3>Search breeds by name:</h3>
-          <input name='byName' id="byName" onChange={filterOnChange}/>
+        <div className={st.t}>
+
+          <div>
+            <h3>Search breeds by name:</h3>
+            <input name='byName' id="byName" onChange={filterOnChange}/>
+          </div>
+
+          <div>
+            <h3>Filter breeds by:</h3>
+            <label>Temperaments</label>
+            
+            <select id= 'temp' onChange = {filterOnChange}>
+              {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
+            </select>
+            {temperamentsSelected?.length && 
+                <label className={st.l}><br/>click to remove: {temperamentsSelected.map( e => <button key={e} value = {e} onClick={removeTemp}>{e}</button>)}</label>}
+
+            <br />
+
+            <label>File source </label>
+            <select id='source' onChange={filterOnChange}>
+              <option value="all the breeds">All</option>
+              <option value="traditionals">Traditionals</option>
+              <option value="users">Created by users</option>
+            </select>
+          </div>
+
+          <div>
+            <h3>Sort by:</h3>
+            <select id = 'alpWeight' onChange={filterOnChange}>
+              <option value="alphabetical">alphabetical order</option>
+              <option value="weight">weight</option>
+            </select>
+
+          <br/>      
+            <select id = 'ascDes' onChange={filterOnChange}>
+              <option value="Ascending">ascending order</option>
+              <option value="Descending">descending order</option>
+            </select>
+          </div>
         </div>
 
-        <div>
-          <h3>Filter breeds by:</h3>
-          <label>temperaments</label>
-          
-          <select id= 'temp' onChange = {filterOnChange}>
-            {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
-          </select>
-          {temperamentsSelected?.length && 
-              <label> Click to remove: {temperamentsSelected.map( e => <button key={e} value = {e} onClick={removeTemp}>{e}</button>)}</label>}
-
-          <br />
-
-          <label>file source </label>
-          <select id='source' onChange={filterOnChange}>
-            <option value="all the breeds">All</option>
-            <option value="traditionals">Traditionals</option>
-            <option value="users">Created by users</option>
-          </select>
-        </div>
-
-        <div>
-          <h3>Sort by:</h3>
-          <select id = 'alpWeight' onChange={filterOnChange}>
-            <option value="alphabetical">alphabetical order</option>
-            <option value="weight">weight</option>
-          </select>
-
-      <br/>      
-          <select id = 'ascDes' onChange={filterOnChange}>
-            <option value="Ascending">ascending order</option>
-            <option value="Descending">descending order</option>
-          </select>
+        <div className={st.p}>
+          {/* recibe array VV */} 
+          <ShowsCardsAndPagination info = {allBreedsFiltered}/>  
         </div>
 
 
-      {/* recibe array VV */} 
-      <ShowsCardsAndPagination info = {allBreedsFiltered}/>  
 
       </div>
     );
