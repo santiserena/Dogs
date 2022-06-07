@@ -19,29 +19,26 @@ export default function Breed (){
        return () => {setMyState({})}    //DEJAR ERROR POR AHORA
     },[id])
 
-
-
     return (
-        
-
             <div className={st.t}>
-                <div>
-                    <Link to = '/home'><button>Go back home</button></Link>
+                <div className={st.buEs}>
+                    <Link to = '/home'><button className={st.bu}>Go back home</button></Link>
+                    <div className={st.sp}><h3 className={st.name}>{myState.name}</h3></div>
                 </div>
                 <div className={st.i}>
-                    <div>
-                        <h3>{myState.name}</h3>
-                    </div>
-                    <div>
-                        <img src={myState.image} width="193" height="130" alt="not found" />
-                    </div>
-                    <div>
-                        {myState.weight ? <p>weight: {myState.weight}</p> : null}   
-                        {myState.height ? <p>height: {myState.height}</p> : null}
+                    <div className={st.so}>
 
-                        {myState.lifeSpan? <p>lifeSpan: {myState.lifeSpan}</p> : null}{/* hacer abajo */}
-                        {myState.temperament ? <p>temperaments: {myState.temperament?.join(', ')}</p> : null}
-                    </div>    
+                           
+                        <div className={st.in}> 
+                            <img src={myState.image} className={st.ima} alt="not found" />
+                        </div>
+                        <div className={st.inf}>
+                            {myState.weight ? <p>Weight: {myState.weight[0]}-{myState.weight[1]} lb.</p> : null}   
+                            {myState.height ? <p>Height: {myState.height[0]}-{myState.height[1]} In.</p> : null}
+                            {myState.lifeSpan? <p>LifeSpan: {myState.lifeSpan[0]-myState.lifeSpan[1]} years.</p> : null}{/* hacer abajo */}
+                            {myState.temperament ? <p>Temperaments: {myState.temperament?.join(', ')}</p> : null}
+                        </div>    
+                    </div>
                 </div>    
             </div>
     )

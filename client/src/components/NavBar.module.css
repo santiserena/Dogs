@@ -1,0 +1,18 @@
+.t{
+    background-image: url('../images/collage.png');
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.bu {
+    width: 230px;
+    height: 35px;
+    background-color: #E19619;
+    border: solid #F3D7CD 3px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #174244;
+  }

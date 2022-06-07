@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments } from "../redux/actions";
 import axios from "axios";
+import st from './Create.module.css'
 
 
 export default function Create(){
@@ -88,48 +89,59 @@ export default function Create(){
     }
     
     return (
-        <form onSubmit={handleSubmit}>
-              
-            <Link to = '/home'><button>Go back home</button></Link>
-            <h3>Enter breed name</h3>
-            <input name='name' onChange={handleOnChange}/>
-            <p>{myState.error.name}</p>
+        <form onSubmit={handleSubmit} className={st.t}>
+                
+            <Link to = '/home'><button className={st.bu}>Go back home</button></Link>
 
-            <h3>Maximum and minimum height</h3>
-            <input name='maxHeight' onChange={handleOnChange}/>
-    <br/>   <input name='minHeight' onChange={handleOnChange}/>
-            <label>Inches</label>
-            <p>{myState.error.height}</p>
-            
+            <div className={st.in}>
+                <div className={st.it}>
+                    <h3>Enter breed name</h3>
+                    <input name='name' onChange={handleOnChange}/>
+                    <p>{myState.error.name}</p>
+                </div>
 
-            <h3>Maximum and minimum weight</h3>
-            <input name='maxWeight' onChange={handleOnChange}/>
-    <br/>   <input name='minWeight' onChange={handleOnChange}/>
-            <label>Pounds</label>
-            <p>{myState.error.weight}</p>
+                <div className={st.it}>
+                    <h3>Maximum and minimum height</h3>
+                    <input name='maxHeight' onChange={handleOnChange}/>
+                    <br/><input name='minHeight' onChange={handleOnChange}/>
+                    <label>Inches</label>
+                    <p>{myState.error.height}</p>
+                </div>
 
-            <h3>Average life expectancy</h3>
-            <input name='lifeSpan' onChange={handleOnChange}/>
-            <label>Years</label>
-            <p>{myState.error.lifeSpan}</p>
+                <div className={st.it}>
+                    <h3>Maximum and minimum weight</h3>
+                    <input name='maxWeight' onChange={handleOnChange}/>
+                    <br/><input name='minWeight' onChange={handleOnChange}/>
+                    <label>Pounds</label>
+                    <p>{myState.error.weight}</p>
+                </div>
 
-            <h3>Url with the image of the breed</h3>
-            <input name='image' onChange={handleOnChange}/>
-            <p>{myState.error.image}</p>
+                <div className={st.it}>
+                    <h3>Average life expectancy</h3>
+                    <input name='lifeSpan' onChange={handleOnChange}/>
+                    <label>Years</label>
+                    <p>{myState.error.lifeSpan}</p>
+                </div>
 
+                <div className={st.it}>
+                    <h3>Url with the image of the breed</h3>
+                    <input name='image' onChange={handleOnChange}/>
+                    <p>{myState.error.image}</p>
+                </div>    
 
-    <br/>   <h3>Select one or more temperaments</h3> 
-            <select name='temperaments' onChange={handleOnChange}>
-                {temp.map ( e => <option key = {e.id}>{e.name}</option> )}    
-            </select>
+                <div className={st.it}>
+                    <br/><h3>Select one or more temperaments</h3> 
+                    <select name='temperaments' onChange={handleOnChange}>
+                        {temp.map ( e => <option key = {e.id}>{e.name}</option> )}    
+                    </select>
 
-            { myState.t.length && <label>selected: {myState.t.join(', ')}</label>}
-
-    <br/><br/> 
-            
-            {myState.error.name === '' && myState.error.height === '' &&
-                myState.error.weight === '' && myState.error.lifeSpan === ''&&
-                <input type = "submit" value = 'submit' />}
+                    { myState.t.length && <label>selected: {myState.t.join(', ')}</label>}
+                    <br/><br/> 
+                    {myState.error.name === '' && myState.error.height === '' &&
+                        myState.error.weight === '' && myState.error.lifeSpan === ''&&
+                        <input type = "submit" value = 'submit' />}
+                </div>
+            </div>
         </form> 
     )
   };
