@@ -16,7 +16,7 @@ export default function Breed (){
        .then((result) => (setMyState(result.data)))
        .catch ( e => console.log(e))                   
 
-       return () => {setMyState({})}    //DEJAR ERROR POR AHORA
+       return () => {setMyState({})}    
     },[id])
 
     return (
@@ -30,7 +30,7 @@ export default function Breed (){
 
                            
                         <div className={st.in}> 
-                            <img src={myState.image} className={st.ima} alt="not found" />
+                            { myState.image ? <img src={myState.image} className={st.ima} alt="not found" /> : <img src={footprints} className={st.ima} alt="not found" />}
                         </div>
                         <div className={st.inf}>
                             {myState.weight ? <p>Weight: {myState.weight[0]}-{myState.weight[1]} lb.</p> : null}   

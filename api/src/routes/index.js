@@ -48,7 +48,7 @@ async function getAllBreeds (){
 }
 
 // initial load of temperaments from api -> on dev
-/*  async function getTemperaments (){
+ /* async function getTemperaments (){
     let temperamentString = '';
     let allInfo = (await axios ('https://api.thedogapi.com/v1/breeds')).data;
     allInfo.forEach ( e => temperamentString += e.temperament+ ', ') 
@@ -59,7 +59,7 @@ async function getAllBreeds (){
 } 
  (async function initialTemperamentsLoad (){
     const tem = await getTemperaments();
-    let vvv = await Dog.findAll()
+    let vvv = await Temper.findAll()
     if (vvv.length<1){
         for (let i = 0; i < tem.length-1; i++) {
             Temper.create({name: tem[i]})
@@ -85,6 +85,22 @@ router.get('/dogs', async (req, res, next) => {
     } catch (error) {
         next (error);
     }
+})
+
+// delete a breed by its id
+router.delete('/erase/:id', async (req, res, next) => {
+
+    let idd = req.params.id
+    let encontrado = await getAllBreeds()
+    encontrado = encontrado.find ( e => e.id === idd)
+    console.log('acaa', encontrado);
+    await Dog.destroy({
+        where: {
+            id:idd
+        }
+    })
+
+   res.send ('borado')
 })
 
 // gives breed and temperament info, searched by an id using params

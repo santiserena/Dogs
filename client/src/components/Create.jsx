@@ -18,15 +18,18 @@ export default function Create(){
     const temp = useSelector ( state => state.temperaments);
 
     const handleOnChange = (e) =>{
-
-      if(e.target.name !=='temperaments'){
-          setMyState((prevState) => ({
-              ...prevState, 
-              [e.target.name]: e.target.value
+        
+        if(e.target.name !=='temperaments'){
+            setMyState((prevState) => ({
+                ...prevState, 
+                [e.target.name]: e.target.value
             }))
         }
-
-      else{
+        
+        else{
+ 
+          if (myState.t.find (el => el === e.target.value)) return;
+           
           let array = myState.t
           array.push(e.target.value)
           setMyState({...myState, t: array})
@@ -65,6 +68,7 @@ export default function Create(){
     }
     
     const handleSubmit= (event) => {
+        event.preventDefault();
         
         let toSend ={
             name: myState.name,
@@ -74,9 +78,9 @@ export default function Create(){
         if (myState.t.length) toSend.temperaments = myState.t;
         if (myState.lifeSpan) toSend.lifeSpan = `${myState.lifeSpan}`;
         if (myState.image) toSend.image = myState.image;
-
-        console.log(toSend);
         
+        setMyState({error:{}, t:[]});
+        //LIMPIAR FORM
         
         axios.post('http://localhost:3001/dog', toSend)
         .then( response => alert('Breed added successfully!') )
@@ -85,7 +89,7 @@ export default function Create(){
             alert ('Load Failed')
         })
 
-        event.preventDefault();
+    
     }
     
     return (
@@ -131,11 +135,11 @@ export default function Create(){
 
                 <div className={st.it}>
                     <br/><h3>Select one or more temperaments</h3> 
-                    <select name='temperaments' onChange={handleOnChange}>
+                    {<select name='temperaments' onChange={handleOnChange}>
                         {temp.map ( e => <option key = {e.id}>{e.name}</option> )}    
-                    </select>
+                    </select>}
 
-                    { myState.t.length && <label>selected: {myState.t.join(', ')}</label>}
+                    { myState.t.length? <label>selected: {myState.t.join(', ')}</label>:null}
                     <br/><br/> 
                     {myState.error.name === '' && myState.error.height === '' &&
                         myState.error.weight === '' && myState.error.lifeSpan === ''&&

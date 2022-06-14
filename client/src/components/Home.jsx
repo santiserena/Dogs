@@ -59,8 +59,8 @@ export default function Home (){
             <select id= 'temp' onChange = {filterOnChange}>
               {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
             </select>
-            {temperamentsSelected?.length && 
-                <label className={st.l}><br/>click to remove: {temperamentsSelected.map( e => <button key={e} value = {e} onClick={removeTemp}>{e}</button>)}</label>}
+            {temperamentsSelected?.length ? 
+                <label className={st.l}><br/>click to remove: {temperamentsSelected.map( e => <button key={e} value = {e} onClick={removeTemp}>{e}</button>)}</label> : null}
 
             <br />
 
@@ -89,6 +89,8 @@ export default function Home (){
 
         <div className={st.p}>
           {/* recibe array VV */} 
+
+          {allBreedsFiltered?.length ?null : <h1>no se encontro el elemento</h1> }
           <ShowsCardsAndPagination info = {allBreedsFiltered}/>  
         </div>
 
