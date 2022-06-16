@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { doFilters, getAllBreeds, getTemperaments, removeTemperament } from "../redux/actions";
-import ShowsCardsAndPagination from "./ShowsCardsAndPagination";
+import Pagination from "./Pagination";
 import st from './Home.module.css';
+import Card from './Card'
 
 
 export default function Home (){
@@ -20,6 +21,11 @@ export default function Home (){
     
     
     function filterOnChange (e){
+
+      setCurrentPage (1)
+      
+      //just to take warning out:
+      setCardsPerPage(8)
 
       let sending ={
         sltName:document.getElementById('byName').value,
@@ -42,6 +48,23 @@ export default function Home (){
       dispatch (removeTemperament(e.target.value))
       filterOnChange(e)
     }
+
+    
+    /* _______________pagination_________________________ */
+    
+    const [currentPage, setCurrentPage] = useState(1)
+    const [cardsPerPage, setCardsPerPage] = useState (8)
+    const indexOfLastCard = currentPage * cardsPerPage //last card of the page
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage //first card of the page
+    const currentCards = allBreedsFiltered.slice (indexOfFirstCard, indexOfLastCard) // current page we are seeing
+    
+    const pagination = (pageNumber) =>{
+      setCurrentPage (pageNumber)
+    }
+    
+    
+/* _______________pagination_________________________ */
+
 
     return (
       <div>
@@ -87,14 +110,21 @@ export default function Home (){
           </div>
         </div>
 
-        <div className={st.p}>
-          {/* recibe array VV */} 
+{/* _____________________pagination______________________ */}
+       
+        <div className={st.t}>
 
-          {allBreedsFiltered?.length ?null : <h1>no se encontro el elemento</h1> }
-          <ShowsCardsAndPagination info = {allBreedsFiltered}/>  
+            <Pagination
+                cardsPerPage={cardsPerPage}
+                allBreedsFiltered={allBreedsFiltered.length}
+                pagination={pagination}
+                currentPage={currentPage}
+            />
         </div>
+{/* _____________________pagination______________________ */}
 
 
+        {currentCards?.map( el => <Card key={el.id} data={el}/>)}
 
       </div>
     );

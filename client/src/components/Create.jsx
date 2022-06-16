@@ -34,7 +34,6 @@ export default function Create(){
           array.push(e.target.value)
           setMyState({...myState, t: array})
       } 
-      
       validate()
     }
    
@@ -79,17 +78,25 @@ export default function Create(){
         if (myState.lifeSpan) toSend.lifeSpan = `${myState.lifeSpan}`;
         if (myState.image) toSend.image = myState.image;
         
-        setMyState({error:{}, t:[]});
-        //LIMPIAR FORM
         
         axios.post('http://localhost:3001/dog', toSend)
-        .then( response => alert('Breed added successfully!') )
+        .then( response =>
+            
+            alert('Breed added successfully!') )
         .catch ( error => {
             console.log('Error--->',error)
             alert ('Load Failed')
         })
 
-    
+        //cleaning
+        setMyState({error:{}, t:[]});
+        document.getElementById ('name2').value = '';
+        document.getElementById ('name3').value = '';
+        document.getElementById ('name4').value = '';
+        document.getElementById ('name5').value = '';
+        document.getElementById ('name6').value = '';
+        document.getElementById ('name7').value = '';
+        document.getElementById ('name8').value = '';
     }
     
     return (
@@ -100,36 +107,36 @@ export default function Create(){
             <div className={st.in}>
                 <div className={st.it}>
                     <h3>Enter breed name</h3>
-                    <input name='name' onChange={handleOnChange}/>
+                    <input id = 'name2' name='name' onChange={handleOnChange}/>
                     <p>{myState.error.name}</p>
                 </div>
 
                 <div className={st.it}>
                     <h3>Maximum and minimum height</h3>
-                    <input name='maxHeight' onChange={handleOnChange}/>
-                    <br/><input name='minHeight' onChange={handleOnChange}/>
+                    <input name='maxHeight' id = 'name3' onChange={handleOnChange}/>
+                    <br/><input name='minHeight' id = 'name4' onChange={handleOnChange}/>
                     <label>Inches</label>
                     <p>{myState.error.height}</p>
                 </div>
 
                 <div className={st.it}>
                     <h3>Maximum and minimum weight</h3>
-                    <input name='maxWeight' onChange={handleOnChange}/>
-                    <br/><input name='minWeight' onChange={handleOnChange}/>
+                    <input name='maxWeight' id = 'name5' onChange={handleOnChange}/>
+                    <br/><input name='minWeight' id = 'name6' onChange={handleOnChange}/>
                     <label>Pounds</label>
                     <p>{myState.error.weight}</p>
                 </div>
 
                 <div className={st.it}>
                     <h3>Average life expectancy</h3>
-                    <input name='lifeSpan' onChange={handleOnChange}/>
+                    <input name='lifeSpan' id = 'name7' onChange={handleOnChange}/>
                     <label>Years</label>
                     <p>{myState.error.lifeSpan}</p>
                 </div>
 
                 <div className={st.it}>
                     <h3>Url with the image of the breed</h3>
-                    <input name='image' onChange={handleOnChange}/>
+                    <input name='image' id = 'name8' onChange={handleOnChange}/>
                     <p>{myState.error.image}</p>
                 </div>    
 
