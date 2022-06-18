@@ -1,0 +1,37 @@
+.all {
+        height: 90px;
+        padding-bottom: 10px;
+        padding-top: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content:space-around;  
+}
+
+.pageNum {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* .prevNext {
+    background-color: blueviolet;
+} */
+
+/* all numbers buttons */
+
+.oneBu {
+    width: 30px;
+    margin: 1.5px;
+    background-color: #5E7D80;
+    border: 1px solid #2e3f40;
+    border-radius: 4px;
+}
+
+.b{
+    width: 60px;
+    margin: 1.5px;
+    background-color: #5E7D80;
+    border: 1px solid #2e3f40;
+    border-radius: 4px;
+}
+

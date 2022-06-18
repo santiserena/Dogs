@@ -8,7 +8,7 @@ export default function About(){
         
         <h1>Technologies used for this application:</h1>
         <h5>Frontend:</h5>
-        <p>JavaScript, React, Redux, React Router Dom v6, Axios </p>
+        <p>JavaScript, React, Redux, React Router Dom v6, Axios, Css </p>
         <h5>Backend:</h5>
         <p>Node JS, Express, Axios</p>
         <h5>Database:</h5>

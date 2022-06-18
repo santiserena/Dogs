@@ -1,20 +1,64 @@
+/* pagination and search setters */
+.co {
+    background-color: #385a5c43;   
+}
+
+/* seachers */
 .t {
-    background-color: #385a5c43;
+    background-color: #5e7d80;
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
-    padding-bottom: 25px;
-    
-    
+    justify-content:space-around;   
+    padding-bottom: 20px;
+    height: 120px;
 }
 
-.l {
+
+.ca{ 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* click to remove temperaments */
+.l { 
     font-size: small;
-    color:cadetblue;
 }
 
-.p{
+/* cards div */
+.dw {
     background-image: url('../images/opacityimage.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    height: 1200px;
+/* border: 1px solid black; */
+}
+
+.in{
+    width: 150px;
+    border-radius: 4px;
+    background-color: #F9ECE5;
+}
+
+.na {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.bt{
+    background-color: #F9ECE5;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-left: 4px;
+}
+
+.pg{
+    margin-top: 10px;
+    padding: 3px;
+    width: 110px;
+    color: rgba(0, 0, 0, 0.534);
+    border: 1px rgba(0, 0, 0, 0.459) solid;
+    border-radius: 3px;
+    
 }

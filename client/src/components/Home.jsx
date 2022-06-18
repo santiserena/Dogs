@@ -34,8 +34,6 @@ export default function Home (){
         sltAscDes:document.getElementById('ascDes').value
       }
 
-     
-
       if (e.target.id === 'temp' && !temperamentsSelected.includes(e.target.value)){
         dispatch (doFilters({...sending, sltTemp: e.target.value}))
       }
@@ -48,10 +46,9 @@ export default function Home (){
       dispatch (removeTemperament(e.target.value))
       filterOnChange(e)
     }
-
     
     /* _______________pagination_________________________ */
-    
+
     const [currentPage, setCurrentPage] = useState(1)
     const [cardsPerPage, setCardsPerPage] = useState (8)
     const indexOfLastCard = currentPage * cardsPerPage //last card of the page
@@ -61,49 +58,55 @@ export default function Home (){
     const pagination = (pageNumber) =>{
       setCurrentPage (pageNumber)
     }
-    
-    
 /* _______________pagination_________________________ */
 
 
     return (
       <div>
-        <div className={st.t}>
+        <div className={`${st.t} ${st.co}`} >
 
           <div>
             <h3>Search breeds by name:</h3>
-            <input name='byName' id="byName" onChange={filterOnChange}/>
+            <input name='byName' id="byName" className={st.in} onChange={filterOnChange}/>
+            {allBreedsFiltered?.length ? <h3 className={st.pg}>Page {currentPage} / {Math.ceil(allBreedsFiltered.length/cardsPerPage)}</h3> : null}
           </div>
 
           <div>
             <h3>Filter breeds by:</h3>
-            <label>Temperaments</label>
             
-            <select id= 'temp' onChange = {filterOnChange}>
-              {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
-            </select>
-            {temperamentsSelected?.length ? 
-                <label className={st.l}><br/>click to remove: {temperamentsSelected.map( e => <button key={e} value = {e} onClick={removeTemp}>{e}</button>)}</label> : null}
-
-            <br />
-
-            <label>File source </label>
-            <select id='source' onChange={filterOnChange}>
+            <select id='source' className={st.in} onChange={filterOnChange}>
               <option value="all the breeds">All</option>
               <option value="traditionals">Traditionals</option>
               <option value="users">Created by users</option>
             </select>
+            <label> File source </label>
+            
+            <br/>
+
+            <select id= 'temp' className={st.in} onChange = {filterOnChange}>
+              {temp?.map ( e => <option key = {e.id}>{e.name}</option> )} 
+            </select>
+            <label> Temperaments</label>
+            <br/>
+            {temperamentsSelected?.length ? 
+
+              <div className = {st.na}>
+                  <label className={st.l}>Click to remove:  </label>
+                  {temperamentsSelected.map( e => <button key={e} value = {e} className={st.bt} onClick={removeTemp}>{e}</button>)}
+              </div>
+              : null}
+
           </div>
 
           <div>
             <h3>Sort by:</h3>
-            <select id = 'alpWeight' onChange={filterOnChange}>
+            <select id = 'alpWeight' className={st.in} onChange={filterOnChange}>
               <option value="alphabetical">alphabetical order</option>
               <option value="weight">weight</option>
             </select>
 
           <br/>      
-            <select id = 'ascDes' onChange={filterOnChange}>
+            <select id = 'ascDes' className={st.in} onChange={filterOnChange}>
               <option value="Ascending">ascending order</option>
               <option value="Descending">descending order</option>
             </select>
@@ -111,21 +114,24 @@ export default function Home (){
         </div>
 
 {/* _____________________pagination______________________ */}
-       
-        <div className={st.t}>
+        <div className={st.dw}>
+          <div className = {st.ca}>
+            {currentCards?.map( el => <Card key={el.id} data={el}/>)}
+          </div>
 
-            <Pagination
-                cardsPerPage={cardsPerPage}
-                allBreedsFiltered={allBreedsFiltered.length}
-                pagination={pagination}
-                currentPage={currentPage}
-            />
-        </div>
+          <div className={st.co}>
+              <Pagination
+                  cardsPerPage={cardsPerPage}
+                  allBreedsFiltered={allBreedsFiltered.length}
+                  pagination={pagination}
+                  currentPage={currentPage}
+                  />
+          </div>
 {/* _____________________pagination______________________ */}
+           
 
-
-        {currentCards?.map( el => <Card key={el.id} data={el}/>)}
-
+              
+        </div>
       </div>
     );
 }

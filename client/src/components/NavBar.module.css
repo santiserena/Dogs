@@ -1,5 +1,5 @@
 .t{
-    background-image: url('../images/collage.png');
+    background-image: url('../images/opacityimage.jpg');
     height: 50px;
     display: flex;
     justify-content: space-around;
@@ -11,7 +11,7 @@
     width: 230px;
     height: 35px;
     background-color: #E19619;
-    border: solid #F3D7CD 3px;
+    border: solid #385A5C 3px;
     border-radius: 10px;
     font-size: 20px;
     color: #174244;
