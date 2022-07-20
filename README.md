@@ -22,5 +22,5 @@ This platform is the result of my individual project at the Henry bootcamp. Its 
 
 ## Do you want to ask me something?
 
-  - GET https://www.linkedin.com/in/santiagoserena/
+  https://www.linkedin.com/in/santiagoserena/
 
