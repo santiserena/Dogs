@@ -25,7 +25,7 @@ export default function ShowsCardsAndPagination ({cardsPerPage, allBreedsFiltere
                 Page: {currentPage} of {pageNumber.length}
               </span>
             </div>
-          ) : <p>There are no concidenses</p>}
+          ) : <div className={st.noConcidenses}><p>There are no concidenses</p></div>}
         </div>  
 
         <div>

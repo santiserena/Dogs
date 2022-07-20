@@ -8,16 +8,16 @@ import Card from './Card'
 
 export default function Home (){
 
-    const dispatch = useDispatch();
+    const dispatch =useDispatch();
     const temp = useSelector ( state => state.temperaments);
     const allBreedsFiltered = useSelector (state => state.filtered);
-    const temperamentsSelected = useSelector (state => state.temperamentsSelected);
+    const temperamentsSelected = useSelector((state) => state.temperamentsSelected);
    
     
     useEffect(() => {
-      dispatch(getAllBreeds())
-      dispatch(getTemperaments())
-    },[dispatch]) 
+      dispatch(getAllBreeds());
+      dispatch(getTemperaments());
+    }, [dispatch]); 
     
     
     function filterOnChange (e){
@@ -62,7 +62,9 @@ export default function Home (){
 
 
     return (
-      <div>
+
+    <div>  
+     { <div className={st.dw}>
         <div className={`${st.t} ${st.co}`} >
 
           <div>
@@ -101,25 +103,25 @@ export default function Home (){
           <div>
             <h3>Sort by:</h3>
             <select id = 'alpWeight' className={st.in} onChange={filterOnChange}>
-              <option value="alphabetical">alphabetical order</option>
-              <option value="weight">weight</option>
+              <option value="alphabetical">Alphabetical order</option>
+              <option value="weight">Weight</option>
             </select>
 
           <br/>      
             <select id = 'ascDes' className={st.in} onChange={filterOnChange}>
-              <option value="Ascending">ascending order</option>
-              <option value="Descending">descending order</option>
+              <option value="Ascending">Ascending order</option>
+              <option value="Descending">Descending order</option>
             </select>
           </div>
         </div>
 
 {/* _____________________pagination______________________ */}
-        <div className={st.dw}>
+        <div /* className={st.dw} */>
           <div className = {st.ca}>
             {currentCards?.map( el => <Card key={el.id} data={el}/>)}
           </div>
 
-          <div className={st.co}>
+          <div>
               <Pagination
                   cardsPerPage={cardsPerPage}
                   allBreedsFiltered={allBreedsFiltered.length}
@@ -132,6 +134,7 @@ export default function Home (){
 
               
         </div>
-      </div>
+      </div> }
+    </div>  
     );
 }

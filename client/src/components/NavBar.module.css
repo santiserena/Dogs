@@ -1,6 +1,7 @@
 .t{
-    background-image: url('../images/opacityimage.jpg');
-    height: 50px;
+    /* background-image: url('../images/opacityimage.jpg'); */
+    background-color: #cfe3e3;
+    height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;

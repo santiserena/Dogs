@@ -1,14 +1,13 @@
-/* pagination and search setters */
-.co {
-    background-color: #385a5c43;   
-}
+
 
 /* seachers */
 .t {
+    /* border: 2px solid black; */
     background-color: #5e7d80;
     display: flex;
     flex-direction: row;
-    justify-content:space-around;   
+    justify-content:space-around;
+    /* flex-wrap: wrap; */   
     padding-bottom: 20px;
     height: 120px;
 }
@@ -26,14 +25,27 @@
 
 /* cards div */
 .dw {
-    background-image: url('../images/opacityimage.jpg');
+    /* border: 1px solid red; */
+    /* background-image: url('../images/opacityimage.jpg'); */ /* ver si lo saco */
+    background-color: #cfe3e3;
+    position: absolute;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 1200px;
-/* border: 1px solid black; */
+    background-size:cover;
+    background-position: center;
+    object-fit: cover;
+    /* overflow: auto; */ 
+    width: 100%;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .in{
+    
     width: 150px;
     border-radius: 4px;
     background-color: #F9ECE5;
@@ -62,3 +74,15 @@
     border-radius: 3px;
     
 }
+
+/* ::-webkit-scrollbar {
+    width: 12px ; 
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inserción 0 0 6px rgba ( 0 , 0 , 0 , 0.3 );   
+    border-radius: 10px ; 
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius : 10px ; 
+    box-shadow: inserción 0 0 6px rgba ( 0 , 0 , 0 , 0.5 );  
+  } */
