@@ -76,7 +76,3 @@ body {
 }
 
 
-.card :hover {
-    animation: pulsate 1.5s ease-in-out;
-    cursor: pointer;
-}
