@@ -59,7 +59,7 @@ async function getAllBreeds (){
 } 
  (async function initialTemperamentsLoad (){
     const tem = await getTemperaments();
-    let vvv = await Temper.findAll()
+    let vvv = await Temper.findAll();
     if (vvv.length<1){
         for (let i = 0; i < tem.length-1; i++) {
             Temper.create({name: tem[i]})
@@ -79,7 +79,7 @@ router.get('/dogs', async (req, res, next) => {
         if(!req.query.name) res.send(breedTotal);
         else {const filt = breedTotal.filter( e => e.name.toLowerCase().includes(req.query.name.toLowerCase())) 
         
-            console.log('acaaaaaaaaaaaaaa',filt);
+        
         filt.length? res.send(filt) : res.send ('Breed not found')
         }
     } catch (error) {
@@ -93,7 +93,6 @@ router.delete('/erase/:id', async (req, res, next) => {
     let idd = req.params.id
     let encontrado = await getAllBreeds()
     encontrado = encontrado.find ( e => e.id === idd)
-    console.log('acaa', encontrado);
     await Dog.destroy({
         where: {
             id:idd
