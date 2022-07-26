@@ -1,51 +1,46 @@
-
-
 /* seachers */
 .t {
-    /* border: 2px solid black; */
     background-color: #5e7d80;
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
-    /* flex-wrap: wrap; */   
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
     padding-bottom: 20px;
     height: 120px;
 }
 
 
-.ca{ 
+.ca {
     display: flex;
     flex-wrap: wrap;
 }
 
 /* click to remove temperaments */
-.l { 
+.l {
     font-size: small;
 }
 
 /* cards div */
 .dw {
-    /* border: 1px solid red; */
-    /* background-image: url('../images/opacityimage.jpg'); */ /* ver si lo saco */
     background-color: #cfe3e3;
     position: absolute;
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     background-position: center;
     object-fit: cover;
-    /* overflow: auto; */ 
     width: 100%;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
 }
 
-.in{
-    
+.in {
+
     width: 150px;
     border-radius: 4px;
     background-color: #F9ECE5;
@@ -55,34 +50,33 @@ html, body {
     margin-top: 7px;
     display: flex;
     align-items: center;
-    
+
 }
 
-.bt{
+.bt {
     background-color: #F9ECE5;
     border: 1px solid black;
     border-radius: 3px;
     margin-left: 4px;
 }
 
-.pg{
+.pg {
     margin-top: 10px;
     padding: 3px;
     width: 110px;
     color: rgba(0, 0, 0, 0.534);
     border: 1px rgba(0, 0, 0, 0.459) solid;
     border-radius: 3px;
-    
+
 }
 
-/* ::-webkit-scrollbar {
-    width: 12px ; 
-  }
-  ::-webkit-scrollbar-track {
-    box-shadow: inserción 0 0 6px rgba ( 0 , 0 , 0 , 0.3 );   
-    border-radius: 10px ; 
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius : 10px ; 
-    box-shadow: inserción 0 0 6px rgba ( 0 , 0 , 0 , 0.5 );  
-  } */
+.bu {
+    color: black;
+    text-decoration: none;
+}
+
+
+.card :hover {
+    animation: pulsate 1.5s ease-in-out;
+    cursor: pointer;
+}

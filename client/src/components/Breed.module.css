@@ -1,9 +1,7 @@
-.t{
-    width: 100vw; /* vw <-- viewport widht, it is written in percentages*/
-    height: 100vh; /* vh */
-    background-image: url('../images/collage.png');
-    background-repeat: no-repeat;
-    background-size: cover; /* stretch the image to the size of the div */
+.t {
+    width: 100vw;
+    height: 100vh;
+    background-color: #cfe3e3;
 }
 
 .bu {
@@ -11,31 +9,40 @@
     margin-bottom: 8px;
     width: 170px;
     height: 35px;
-    background-color: #E19619;
-    border: solid #F3D7CD 3px;
+    background-color: #EB9959;
+    border: solid #385A5C 3px;
     border-radius: 10px;
     font-size: 20px;
     color: #174244;
-  }
+}
 
-.sp{  /* gray line */
-    height: 100px;
-    background-color: #d4cfcb;
-    font-size: 50px;
+.buEs {
+    height: 60px;
     display: flex;
+    margin-left: 15px;
     align-items: center;
 }
 
-.i{   /* name and image <-> info     mudarrrr*/
-    height: 76.7%;
-    background-image: url('../images/opacityimage.jpg');
+.sp {
+    height: 65px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    font-size: 29px;
+
 }
 
-.so{ /* card */
+.i {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.so {
+    /* card */
     border-radius: 8px;
     border: 3px solid #203435;
     background-color: #385A5C;
@@ -45,32 +52,31 @@
     justify-content: space-between;
 }
 
-.in{  /* image container*/
+.in {
+    /* image container*/
     width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-    /* image */
-.ima{
+
+/* image */
+.ima {
     height: 80%;
     width: 80%;
     border: 2px solid #203435bb;
     border-radius: 8px;
 }
 
-.inf{
-    /* border: 1px solid black; */
+.inf {
+
     width: 50%;
     height: 87%;
     padding-top: 2%;
     padding-bottom: 2%;
-    font-size: 25px;
+    font-size: 23px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
-
-
- 

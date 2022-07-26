@@ -1,8 +1,5 @@
 .t{
-    background-image: url('../images/opacityimage.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 153vh;
+    background-color: #cfe3e3;
 }
 
 .in{
@@ -15,12 +12,12 @@
 }
 
 .bu {
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-left: 15px;
+    margin-top: 13px;
     width: 170px;
     height: 35px;
-    background-color: #E19619;
-    border: solid #F3D7CD 3px;
+    background-color: #EB9959;
+    border: solid #385A5C 3px;
     border-radius: 10px;
     font-size: 20px;
     color: #174244;
@@ -28,18 +25,22 @@
 
   .t h3{
       font-size: 22px;
-  }
+    }
+    
+    .t p{
+        color: rgb(145, 22, 22);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    
+    .it{
+        margin-left: 20px;
+    }
 
-  .t p{
-      color: rgb(145, 22, 22);
-      font-size: 18px;
-      font-weight: 500;
-  }
-
-  .it{
-      margin-left: 20px;
-  }
-
-  .t label{
+    .sa{
+        height: 50px;
+    }
+    
+    .t label{
     font-size: 18px;
 }

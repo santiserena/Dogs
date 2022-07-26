@@ -3,7 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { doFilters, getAllBreeds, getTemperaments, removeTemperament } from "../redux/actions";
 import Pagination from "./Pagination";
 import st from './Home.module.css';
-import Card from './Card'
+import Card from './Card';
+import { Link } from "react-router-dom";
 
 
 export default function Home (){
@@ -118,7 +119,12 @@ export default function Home (){
 {/* _____________________pagination______________________ */}
         <div /* className={st.dw} */>
           <div className = {st.ca}>
-            {currentCards?.map( el => <Card key={el.id} data={el}/>)}
+            {currentCards?.map( el => 
+            <Link className={st.bu} to={`/breed/${el.id}`}>
+            <Card key={el.id} data={el}/>
+            
+          </Link>
+            )}
           </div>
 
           <div>

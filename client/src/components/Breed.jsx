@@ -20,26 +20,49 @@ export default function Breed (){
     },[id])
 
     return (
-            <div className={st.t}>
-                <div className={st.buEs}>
-                    <Link to = '/home'><button className={st.bu}>Go back home</button></Link>
-                    <div className={st.sp}><h3 className={st.name}>{myState.name}</h3></div>
-                </div>
-                <div className={st.i}>
-                    <div className={st.so}>
+      <div className={st.t}>
 
-                           
-                        <div className={st.in}> 
-                            { myState.image ? <img src={myState.image} className={st.ima} alt="not found" /> : <img src={footprints} className={st.ima} alt="not found" />}
-                        </div>
-                        <div className={st.inf}>
-                            {myState.weight ? <p>Weight: {myState.weight[0]}-{myState.weight[1]} lb.</p> : null}   
-                            {myState.height ? <p>Height: {myState.height[0]}-{myState.height[1]} In.</p> : null}
-                            {myState.lifeSpan? <p>LifeSpan: {myState.lifeSpan[0]-myState.lifeSpan[1]} years.</p> : null}{/* hacer abajo */}
-                            {myState.temperament ? <p>Temperaments: {myState.temperament?.join(', ')}</p> : null}
-                        </div>    
-                    </div>
-                </div>    
+        <div className={st.buEs}>
+          <Link to="/home">
+            <button className={st.bu}>Go back home</button>
+          </Link>
+        </div>
+        
+        <div style={{margin: '0 px'}} className={st.sp}>
+          <h3 className={st.name}>{myState.name}</h3>
+        </div>
+        <div className={st.i}>
+          <div className={st.so}>
+            <div className={st.in}>
+              {myState.image ? (
+                <img src={myState.image} className={st.ima} alt="not found" />
+              ) : (
+                <img src={footprints} className={st.ima} alt="not found" />
+              )}
             </div>
-    )
+            <div className={st.inf}>
+              {myState.weight ? (
+                <p>
+                  Weight: {myState.weight[0]}-{myState.weight[1]} lb.
+                </p>
+              ) : null}
+              {myState.height ? (
+                <p>
+                  Height: {myState.height[0]}-{myState.height[1]} In.
+                </p>
+              ) : null}
+              {myState.lifeSpan ? (
+                <p>
+                  LifeSpan: {myState.lifeSpan[0] - myState.lifeSpan[1]} years.
+                </p>
+              ) : null}
+              {/* hacer abajo */}
+              {myState.temperament ? (
+                <p>Temperaments: {myState.temperament?.join(", ")}</p>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 }

@@ -115,7 +115,7 @@ export default function Create(){
                     <h3>Maximum and minimum height</h3>
                     <input name='maxHeight' id = 'name3' onChange={handleOnChange}/>
                     <br/><input name='minHeight' id = 'name4' onChange={handleOnChange}/>
-                    <label>Inches</label>
+                    <label> Inches</label>
                     <p>{myState.error.height}</p>
                 </div>
 
@@ -123,14 +123,14 @@ export default function Create(){
                     <h3>Maximum and minimum weight</h3>
                     <input name='maxWeight' id = 'name5' onChange={handleOnChange}/>
                     <br/><input name='minWeight' id = 'name6' onChange={handleOnChange}/>
-                    <label>Pounds</label>
+                    <label> Pounds</label>
                     <p>{myState.error.weight}</p>
                 </div>
 
                 <div className={st.it}>
                     <h3>Average life expectancy</h3>
                     <input name='lifeSpan' id = 'name7' onChange={handleOnChange}/>
-                    <label>Years</label>
+                    <label> Years</label>
                     <p>{myState.error.lifeSpan}</p>
                 </div>
 
@@ -146,13 +146,15 @@ export default function Create(){
                         {temp.map ( e => <option key = {e.id}>{e.name}</option> )}    
                     </select>}
 
-                    { myState.t.length? <label>selected: {myState.t.join(', ')}</label>:null}
+                    { myState.t.length? <label> Selected: {myState.t.join(', ')}</label>:null}
                     <br/><br/> 
                     {myState.error.name === '' && myState.error.height === '' &&
                         myState.error.weight === '' && myState.error.lifeSpan === ''&&
                         <input type = "submit" value = 'submit' />}
                 </div>
             </div>
+                <div className={st.sa}> 
+                </div>
         </form> 
     )
   };
